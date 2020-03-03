@@ -25,7 +25,7 @@ export default () => (
 						<div class="footer_latest_content">
 
 							<div class="footer_latest_item">
-								<div class="footer_latest_image"><img src="/images/latest_1.jpg"></div>
+								<div class="footer_latest_image"><img src="/images/latest_1.jpg" /></div>
 								<div class="footer_latest_item_content">
 									<div class="footer_latest_item_title"><a href="#">Brazil Summer</a></div>
 									<div class="footer_latest_item_date">Jan 09, 2020</div>
@@ -33,7 +33,7 @@ export default () => (
 							</div>
 
 							<div class="footer_latest_item">
-								<div class="footer_latest_image"><img src="/images/latest_2.jpg"></div>
+								<div class="footer_latest_image"><img src="/images/latest_2.jpg" /></div>
 								<div class="footer_latest_item_content">
 									<div class="footer_latest_item_title"><a href="#">A perfect vacation</a></div>
 									<div class="footer_latest_item_date">Jan 09, 2020</div>
