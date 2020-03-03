@@ -2,34 +2,68 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
-import Hero from '../components/hero'
+import HomeHero from '../components/homehero'
+import Footer from '../components/footer'
 import Layout from '../components/layout'
-import ArticlePreview from '../components/article-preview'
+import Navigation from '../components/navigation'
 
 class RootIndex extends React.Component {
   render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const posts = get(this, 'props.data.allContentfulBlogPost.edges')
-    const [author] = get(this, 'props.data.allContentfulPerson.edges')
+    const [homePage] = get(this, 'props.data.allContentfulHomePage.edges')
+    const hotels = get(this, 'props.data.allContentfulHotelPackage.edges')
+    const navPages = get(this, 'props.data.allContentfulPages.edges')
 
     return (
       <Layout location={this.props.location}>
-        <div style={{ background: '#fff' }}>
-          <Helmet title={siteTitle} />
-          <Hero data={author.node} />
-          <div className="wrapper">
-            <h2 className="section-headline">Recent articles</h2>
-            <ul className="article-list">
-              {posts.map(({ node }) => {
-                return (
-                  <li key={node.slug}>
-                    <ArticlePreview article={node} />
-                  </li>
+        <Navigation data={navPages} />
+        <Helmet> 
+        <title>{homePage.node.title}</title>
+        <link rel="stylesheet" type="text/css" href="/styles/main_styles.css" />
+        <link rel="stylesheet" type="text/css" href="/styles/responsive.css" />
+        </Helmet>
+        <HomeHero data={homePage.node} />
+          
+          
+        <div class="special">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="section_title text-center">
+						<h2>Our most popular hotel packages</h2>
+						<div>take a look at these offers</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="special_content">
+			<div class="special_slider_container">
+				<div class="owl-carousel owl-theme special_slider">
+					{hotels.map(({ node }) => {
+                        return (
+                            <div class="owl-item">
+						<div class="special_item">
+							<div class="special_item_background"><img src={node.image.file.url} alt={node.image.name} /></div>
+							<div class="special_item_content text-center">
+								<div class="special_category">£{node.price}pp<br/>{node.nights} nights</div>
+								<div class="special_title"><a href={'./hotel/' + node.name}>{node.name}</a></div>
+							</div>
+						</div>
+					</div>
                 )
               })}
-            </ul>
-          </div>
-        </div>
+					
+
+					
+
+				</div>
+
+				<div class="special_slider_nav d-flex flex-column align-items-center justify-content-center">
+					<img src="images/special_slider.png" alt="" />
+				</div>
+			</div>
+		</div>
+	</div>
+    <Footer />
       </Layout>
     )
   }
@@ -37,55 +71,54 @@ class RootIndex extends React.Component {
 
 export default RootIndex
 
-export const pageQuery = graphql`
+export const homeQuery = graphql`
   query HomeQuery {
     site {
       siteMetadata {
         title
       }
     }
-    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
-      edges {
-        node {
-          title
-          slug
-          publishDate(formatString: "MMMM Do, YYYY")
-          tags
-          heroImage {
-            fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
-              ...GatsbyContentfulFluid_tracedSVG
-            }
-          }
-          description {
-            childMarkdownRemark {
-              html
-            }
+  allContentfulHomePage {
+    pageInfo {
+      perPage
+    }
+    edges {
+      node {
+        heroImage {
+          file {
+            url
           }
         }
+        slug
+        title
       }
     }
-    allContentfulPerson(
-      filter: { contentful_id: { eq: "15jwOBqpxqSAOy2eOO4S0m" } }
-    ) {
+    }
+    allContentfulHotelPackage(sort: { fields: [updatedAt], order: DESC }) {
       edges {
         node {
-          name
-          shortBio {
-            shortBio
-          }
-          title
-          heroImage: image {
-            fluid(
-              maxWidth: 1180
-              maxHeight: 480
-              resizingBehavior: PAD
-              background: "rgb:000000"
-            ) {
-              ...GatsbyContentfulFluid_tracedSVG
+            id
+            image {
+                file {
+                    url
+                }
             }
-          }
-        }
+            name
+            price
+            starRating
+            nights
+        } 
       }
+    }
+    allContentfulPages {
+    edges {
+      node {
+        title
+        slug
+        id
+      }
+    }
+    
     }
   }
 `

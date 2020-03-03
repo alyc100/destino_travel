@@ -1,0 +1,42 @@
+[
+    {
+        "destination_name": "Jamaica, Caribbean",
+        "code": "holidays-caribbean-jamaica",
+    },
+    {
+        "destination_name": "Dominican Republic, Caribbean",
+        "code": "holidays-caribbean-dominican_republic",
+    },
+    {
+        "destination_name": "Cuba, Caribbean",
+        "code": "holidays-caribbean-cuba",
+    },
+    {
+        "destination_name": "Mexico, Caribbean",
+        "code": "holidays-caribbean-mexico",
+    },
+    {
+        "destination_name": "Anitgua, Caribbean",
+        "code": "holidays-caribbean-antigua",
+    },
+    {
+        "destination_name": "St Vincent and the Grenadines, Caribbean",
+        "code": "holidays-caribbean-st_vincent",
+    },
+    {
+        "destination_name": "Barbados, Caribbean",
+        "code": "holidays-caribbean-barbados",
+    },
+    {
+        "destination_name": "Saint Lucia, Caribbean",
+        "code": "holidays-caribbean-stlucia",
+    },
+    {
+        "destination_name": "Dominica, Caribbean",
+        "code": "holidays-caribbean-dominica",
+    },
+    {
+        "destination_name": "Trinidad and Tobago, Caribbean",
+        "code": "holidays-caribbean-trinida_tobago",
+    }
+ ]

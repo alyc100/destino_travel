@@ -5,14 +5,16 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
   return new Promise((resolve, reject) => {
-    const blogPost = path.resolve('./src/templates/blog-post.js')
+    //Create generic landing pages dynamically
+    const genericPages = path.resolve('./src/templates/generic-page.js')
     resolve(
       graphql(
         `
           {
-            allContentfulBlogPost {
+            allContentfulPages {
               edges {
                 node {
+                  id
                   title
                   slug
                 }
@@ -25,14 +27,49 @@ exports.createPages = ({ graphql, actions }) => {
           console.log(result.errors)
           reject(result.errors)
         }
+        const pages = result.data.allContentfulPages.edges
+        pages.forEach((page, index) => {
+          createPage({
+            path: `/${page.node.title}`,
+            component: genericPages,
+            context: {
+              id: page.node.id
+            },
+          })
+        })
+        })
+    )
+    
+      
+    //Create hotel package pages dynamically
+    const hotelPage = path.resolve('./src/templates/hotel-page.js')
+    resolve(
+      graphql(
+        `
+          {
+            allContentfulHotelPackage {
+              edges {
+                node {
+                  id
+                  name
+                }
+              }
+            }
+          }
+          `
+      ).then(result => {
+        if (result.errors) {
+          console.log(result.errors)
+          reject(result.errors)
+        }
 
-        const posts = result.data.allContentfulBlogPost.edges
+        const posts = result.data.allContentfulHotelPackage.edges
         posts.forEach((post, index) => {
           createPage({
-            path: `/blog/${post.node.slug}/`,
-            component: blogPost,
+            path: `/hotel/${post.node.name}`,
+            component: hotelPage,
             context: {
-              slug: post.node.slug
+              id: post.node.id
             },
           })
         })
