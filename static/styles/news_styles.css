@@ -340,6 +340,31 @@ section
 	margin-left: 5px;
 }
 
+.home_text_large
+{
+	font-size: 215px;
+	font-weight: 900;
+	color: #fdaa27;
+	opacity: 0.34;
+	text-transform: uppercase;
+	line-height: 0.75;
+}
+.home_text_small
+{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-o-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	font-size: 72px;
+	font-weight: 400;
+	color: #FFFFFF;
+	text-shadow: 0px 11px 51px rgba(0,0,0,0.35);
+}
+
 /*********************************
 4. Header
 *********************************/
@@ -1112,13 +1137,13 @@ section
 }
 .post_meta
 {
-	margin-top: 12px;
+	margin-top: 5px;
 }
 .post_meta ul li
 {
 	display: inline-block;
 	position: relative;
-	font-size: 12px;
+	font-size: 30px;
 	font-weight: 600;
 	color: #7d8293;
 	text-transform: uppercase;
@@ -1138,7 +1163,7 @@ section
 }
 .post_meta ul li a
 {
-	font-size: 12px;
+	font-size: 30px;
 	font-weight: 600;
 	color: #7d8293;
 	text-transform: uppercase;
